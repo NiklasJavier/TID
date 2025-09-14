@@ -1,4 +1,4 @@
-### TID (Terraform Infrastructure Deployment)**
+### TID (Terraform Infrastructure Deployment)
 ## Umgebungssteuerung (Benötigt [Setup](#setup)) Bspw.
 Eigene Service können unter dem Verzeichnis `services/*` angelegt werden:
 Beispiel `services/demo.tfvars`:
