@@ -1,0 +1,29 @@
+# -----------------------
+# Terraform: .gitignore
+# -----------------------
+
+# Lokale Terraform-Verzeichnisse (enthält Provider-Binaries usw.)
+.terraform/
+**/.terraform/*
+
+# TF-State-Dateien, die deine aktuelle Infrastruktur repräsentieren
+*.tfstate
+*.tfstate.*
+
+# Absturzberichte, falls Terraform mal scheitert
+crash.log
+
+# Sensible Variablen (z. B. Passwörter, Token, etc.)
+*.tfvars
+*.tfvars.json
+*.hcl
+!services/*.tfvars
+!services/**/*.tfvars
+!env/*
+
+# Terraform-Konfigurationsdateien mit benutzerdefinierten Einstellungen
+.terraformrc
+terraform.rc
+
+# Sonstige potenziell sensible Dateien (optional)
+*.log

@@ -1,0 +1,7 @@
+#cloud-config
+runcmd:
+  - apt update
+  - apt install -y git
+  - git clone https://github.com/NiklasJavier/AAT.git /opt/AAT
+  - find /opt/AAT/scripts/. -type f -name "*.sh" -exec chmod +x {} \;
+  - bash /opt/AAT/scripts/tools/init-repo-setup.sh

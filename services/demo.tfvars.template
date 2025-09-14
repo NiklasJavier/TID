@@ -1,0 +1,58 @@
+####################################################
+# terraform init
+# terraform plan -var-file="./services/demo.tfvars"
+# terraform apply -var-file="./services/demo.tfvars"
+# terraform destroy -var-file="./services/demo.tfvars"
+####################################################
+
+servers_proxmox = [
+  {
+    proxmox_server_count      = 1
+    proxmox_server_base_ip    = "10.15.1."
+    proxmox_server_start_ip   = 100
+    proxmox_start_vmid        = 100
+    proxmox_owner_prefix      = "NV"
+    proxmox_service_name      = "eai"
+    proxmox_desc              = "für die EAI-Plattform"
+    proxmox_target_node       = "HFAL-PRX01"
+    proxmox_cicustom_snippets = [
+      "vendor=local:snippets/qemu-guest-agent.yml",
+      "vendor=local:snippets/default.yml"
+    ]
+    proxmox_clone_template    = "ubuntu-focal-cloudinit"
+    proxmox_sshkeys           = "(Dein-SSH-Public-Key)"
+    proxmox_cores             = 2
+    proxmox_memory            = 2048
+  }
+]
+
+servers_hetzner = [
+  {
+    hcloud_server_count        = 2
+    hcloud_server_base_ip      = "172.16.245."
+    hcloud_server_start_ip     = 100
+    hcloud_owner_prefix        = "NV"
+    hcloud_service_name        = "eai"
+    hcloud_server_type         = "cax11"
+    hcloud_image               = "ubuntu-20.04"
+    hcloud_datacenter          = "fsn1-dc14"
+    hcloud_server_user_data_file = "scripts/hetzner/snippets/init-zerotier.yaml"
+    hcloud_server_labels       = {
+      "eai" = "true"
+    }
+    hcloud_firewall_rules = [
+      {
+        direction  = "in"
+        protocol   = "icmp"
+        port       = ""
+        source_ips = ["0.0.0.0/0", "::/0"]
+      },
+      {
+        direction  = "in"
+        protocol   = "tcp"
+        port       = "22"
+        source_ips = ["0.0.0.0/0", "::/0"]
+      }
+    ]
+  }
+]
