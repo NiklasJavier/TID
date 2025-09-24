@@ -62,15 +62,19 @@ ensure_init() {
 list_services() {
   echo "Verfügbare Services (*.tfvars):"
   if [ -d "$SERVICES_DIR" ]; then
-    find "$SERVICES_DIR" -maxdepth 1 -type f -name "*.tfvars" -print 2>/dev/null | sort | sed "s|$SERVICES_DIR/|  |" || true
+    while IFS= read -r -d '' file; do
+      echo "  $(realpath "$file")"
+    done < <(find "$SERVICES_DIR" -maxdepth 1 -type f -name "*.tfvars" -print0 2>/dev/null | sort -z) || true
   else
     echo "  (Verzeichnis '$SERVICES_DIR' nicht gefunden)"
   fi
 
   echo
-  echo "Verfügbare Skripte:" 
+  echo "Verfügbare Skripte:"
   if [ -d "$SCRIPTS_DIR" ]; then
-    find "$SCRIPTS_DIR" -type f -name "*.sh" -print 2>/dev/null | sort | sed "s|$SCRIPTS_DIR/|  |" || true
+    while IFS= read -r -d '' file; do
+      echo "  $(realpath "$file")"
+    done < <(find "$SCRIPTS_DIR" -type f -name "*.sh" -print0 2>/dev/null | sort -z) || true
   else
     echo "  (Verzeichnis '$SCRIPTS_DIR' nicht gefunden)"
   fi
