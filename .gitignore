@@ -25,5 +25,8 @@ crash.log
 .terraformrc
 terraform.rc
 
+# Lokaler Terraform-Binary Cache
+.terraform-bin/
+
 # Sonstige potenziell sensible Dateien (optional)
 *.log

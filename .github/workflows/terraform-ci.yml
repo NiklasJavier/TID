@@ -20,13 +20,13 @@ jobs:
           terraform_version: 1.6.6
 
       - name: Terraform fmt
-        run: terraform fmt -check -recursive
+        run: ./terraform fmt -check -recursive
 
       - name: Terraform init
-        run: terraform init -backend=false -input=false
+        run: ./terraform init -backend=false -input=false
 
       - name: Terraform validate
-        run: terraform validate -no-color -var-file="terraform.tfvars" -var-file="services/demo.tfvars"
+        run: ./terraform validate -no-color -var-file="terraform.tfvars" -var-file="services/demo.tfvars"
 
   runner-cli:
     runs-on: ubuntu-latest
