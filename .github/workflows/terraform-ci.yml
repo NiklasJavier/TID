@@ -1,0 +1,47 @@
+name: Terraform CI
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    env:
+      TF_IN_AUTOMATION: "true"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.6.6
+
+      - name: Terraform fmt
+        run: ./terraform fmt -check -recursive
+
+      - name: Terraform init
+        run: ./terraform init -backend=false -input=false
+
+      - name: Terraform validate
+        run: ./terraform validate -no-color
+
+  runner-cli:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Test runner CLI commands
+        env:
+          TERRAFORM_BIN: ${{ github.workspace }}/scripts/mock-terraform.sh
+        run: |
+          set -euo pipefail
+          ./runner.sh list
+          ./runner.sh help
+          ./runner.sh plan demo -lock=false -input=false -no-color -refresh=false
+          ./runner.sh up demo
+          ./runner.sh destroy demo
+          ! ./runner.sh up does-not-exist

@@ -9,7 +9,7 @@ set -euo pipefail
 REPO_ROOT="$(dirname "$(realpath "$0")")"
 SERVICES_DIR="$REPO_ROOT/services"
 SCRIPTS_DIR="$REPO_ROOT/scripts"
-TERRAFORM_BIN="${TERRAFORM_BIN:-terraform}"
+TERRAFORM_BIN="${TERRAFORM_BIN:-$REPO_ROOT/terraform}"
 
 print_usage() {
   cat <<USAGE

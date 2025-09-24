@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 1.10.0"
+  required_version = ">= 1.6.0"
 
   required_providers {
     # https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs
@@ -59,7 +59,7 @@ resource "hcloud_server" "server" {
   image        = var.hcloud_image
   firewall_ids = [hcloud_firewall.firewall.id]
   datacenter   = var.hcloud_datacenter
-  user_data = file(var.hcloud_server_user_data_file)
+  user_data    = file(var.hcloud_server_user_data_file)
 
   labels = var.hcloud_server_labels
 

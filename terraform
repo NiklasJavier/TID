@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+ENSURE_SCRIPT="$SCRIPT_DIR/scripts/ensure-terraform.sh"
+
+if [ ! -x "$ENSURE_SCRIPT" ]; then
+  echo "Required helper script not found: $ENSURE_SCRIPT" >&2
+  exit 1
+fi
+
+BIN_PATH="$($ENSURE_SCRIPT)"
+
+exec "$BIN_PATH" "$@"

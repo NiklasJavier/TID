@@ -124,7 +124,7 @@ Dieses Terraform-Repository ermöglicht die **dynamische Erstellung von Proxmox-
 
 ## Voraussetzungen
 
-- **Terraform** (Version >= 1.0.0)
+- **Terraform** (wird automatisch über `./terraform` geladen, benötigt `curl` und `unzip`)
 - Zugriff auf:
   - **Proxmox API** mit Token.
   - **Hetzner Cloud API** mit Token.
@@ -142,22 +142,28 @@ Dieses Terraform-Repository ermöglicht die **dynamische Erstellung von Proxmox-
    bash ./scripts/deployments/select_env.sh
    ```
 
-2. **Terraform initialisieren**
+2. **Terraform CLI vorbereiten**
    ```bash
-   terraform init
+   ./terraform version
+   ```
+   Der Wrapper lädt bei Bedarf automatisch die im Projekt verwendete Terraform-Version (standardmäßig 1.6.6) in den lokalen Cache `./.terraform-bin`.
+
+3. **Terraform initialisieren**
+   ```bash
+   ./terraform init
    ```
 
-3. **Konfiguration anpassen**
+4. **Konfiguration anpassen**
    - Bearbeite die Datei `terraform.tfvars` und `services/*.tfvars` definiere deine Serverkonfigurationen (siehe [Konfiguration](#konfiguration)).
 
-4. **Plan prüfen bspw.**
+5. **Plan prüfen bspw.**
    ```bash
-   terraform plan -var-file="./services/demo.tfvars"
+   ./terraform plan -var-file="./services/demo.tfvars"
    ```
 
-5. **Server erstellen bspw.**
+6. **Server erstellen bspw.**
    ```bash
-   terraform apply -var-file="./services/demo.tfvars
+   ./terraform apply -var-file="./services/demo.tfvars"
    ```
 
 ---

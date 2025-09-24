@@ -136,7 +136,7 @@ variable "proxmox_cloud_init_ciuser_password" {
 variable "proxmox_cicustom_snippets" {
   description = "List of custom CI snippets for Proxmox."
   type        = list(string)
-  default     = [
+  default = [
     "vendor=local:snippets/qemu-guest-agent.yml"
   ]
 }

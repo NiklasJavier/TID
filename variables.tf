@@ -42,17 +42,17 @@ variable "servers_proxmox" {
 variable "servers_hetzner" {
   description = "Liste der Hetzner-Serverkonfigurationen"
   type = list(object({
-    hcloud_server_count        = number
-    hcloud_server_base_ip      = string
-    hcloud_server_start_ip     = number
-    hcloud_owner_prefix        = string
-    hcloud_service_name        = string
-    hcloud_server_type         = string
-    hcloud_image               = string
-    hcloud_datacenter          = string
+    hcloud_server_count          = number
+    hcloud_server_base_ip        = string
+    hcloud_server_start_ip       = number
+    hcloud_owner_prefix          = string
+    hcloud_service_name          = string
+    hcloud_server_type           = string
+    hcloud_image                 = string
+    hcloud_datacenter            = string
     hcloud_server_user_data_file = string
-    hcloud_server_labels       = map(string)
-    hcloud_firewall_rules      = list(object({
+    hcloud_server_labels         = map(string)
+    hcloud_firewall_rules = list(object({
       direction  = string
       protocol   = string
       port       = string

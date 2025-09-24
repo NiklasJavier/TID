@@ -108,7 +108,7 @@ variable "hcloud_server_alias_ips" {
   description = "Alias IPs for the server"
   type        = list(string)
   # bspw. default     = ["172.16.245.11", "172.16.245.12"]
-  default     = []
+  default = []
 }
 
 variable "hcloud_server_user_data_file" {
