@@ -27,3 +27,21 @@ jobs:
 
       - name: Terraform validate
         run: terraform validate -no-color -var-file="terraform.tfvars" -var-file="services/demo.tfvars"
+
+  runner-cli:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Test runner CLI commands
+        env:
+          TERRAFORM_BIN: ${{ github.workspace }}/scripts/mock-terraform.sh
+        run: |
+          set -euo pipefail
+          ./runner.sh list
+          ./runner.sh help
+          ./runner.sh plan demo -lock=false -input=false -no-color -refresh=false
+          ./runner.sh up demo
+          ./runner.sh destroy demo
+          ! ./runner.sh up does-not-exist
