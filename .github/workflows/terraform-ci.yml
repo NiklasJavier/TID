@@ -22,9 +22,6 @@ jobs:
       - name: Terraform fmt
         run: ./terraform fmt -check -recursive
 
-      - name: Terraform init
-        run: ./terraform init -backend=false -input=false
-
       - name: Terraform validate
         run: ./terraform validate -no-color -var-file="terraform.tfvars" -var-file="services/demo.tfvars"
 
