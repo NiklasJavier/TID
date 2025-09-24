@@ -20,10 +20,10 @@ provider "hcloud" {
 }
 
 provider "proxmox" {
-  pm_api_url  = var.proxmox_api_url
-  pm_api_token_id = var.proxmox_api_token_id
+  pm_api_url          = var.proxmox_api_url
+  pm_api_token_id     = var.proxmox_api_token_id
   pm_api_token_secret = var.proxmox_api_token_secret
-  pm_tls_insecure = true
+  pm_tls_insecure     = true
 }
 
 ####################################################
@@ -64,17 +64,17 @@ module "hetzner_servers" {
     hcloud = hcloud
   }
 
-  hcloud_server_count        = each.value.hcloud_server_count
-  hcloud_server_base_ip      = each.value.hcloud_server_base_ip
-  hcloud_server_start_ip     = each.value.hcloud_server_start_ip
-  hcloud_owner_prefix        = each.value.hcloud_owner_prefix
-  hcloud_service_name        = each.value.hcloud_service_name
-  hcloud_server_type         = each.value.hcloud_server_type
-  hcloud_image               = each.value.hcloud_image
-  hcloud_datacenter          = each.value.hcloud_datacenter
+  hcloud_server_count          = each.value.hcloud_server_count
+  hcloud_server_base_ip        = each.value.hcloud_server_base_ip
+  hcloud_server_start_ip       = each.value.hcloud_server_start_ip
+  hcloud_owner_prefix          = each.value.hcloud_owner_prefix
+  hcloud_service_name          = each.value.hcloud_service_name
+  hcloud_server_type           = each.value.hcloud_server_type
+  hcloud_image                 = each.value.hcloud_image
+  hcloud_datacenter            = each.value.hcloud_datacenter
   hcloud_server_user_data_file = each.value.hcloud_server_user_data_file
-  hcloud_server_labels       = each.value.hcloud_server_labels
-  hcloud_firewall_rules      = each.value.hcloud_firewall_rules
+  hcloud_server_labels         = each.value.hcloud_server_labels
+  hcloud_firewall_rules        = each.value.hcloud_firewall_rules
 }
 
 

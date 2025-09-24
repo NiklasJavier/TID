@@ -59,7 +59,7 @@ resource "hcloud_server" "server" {
   image        = var.hcloud_image
   firewall_ids = [hcloud_firewall.firewall.id]
   datacenter   = var.hcloud_datacenter
-  user_data = file(var.hcloud_server_user_data_file)
+  user_data    = file(var.hcloud_server_user_data_file)
 
   labels = var.hcloud_server_labels
 
